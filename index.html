@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidereal28 - Event Calendar</title>
+     <style>
+        /* General Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #F7F1E3;
+            margin: 0;
+            padding: 0;
+            color: #161C1D;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            text-align: center;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+        }
+
+        .side-headings {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .left-heading, .right-heading {
+            margin: 10px;
+        }
+
+        .intro-text {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Calendar styling */
+        .calendar-container {
+            max-width: 960px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .day-cell {
+            background-color: #E8E4D9;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .day-cell:hover {
+            background-color: #D49A0A;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+
+        .day-cell:before {
+            content: attr(data-day);
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .day-cell:hover::after {
+            content: attr(data-project);
+            font-size: 1rem;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .info-text {
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        /* Footer Styling */
+        footer {
+            position: fixed;
+            bottom: 10px;
+            left: 20px;
+            right: 20px;
+            text-align: center;
+            font-size: 1rem;
+            color: #D0AF5D;
+        }
+
+        .credits {
+            margin: 0;
+        }
+
+        /* Animation for fade-in */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Layout Adjustments for Smaller Screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .day-cell {
+                padding: 10px;
+            }
+
+            .info-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="main-heading">Sidereal28</h1>
+        <div class="side-headings">
+            <h2 class="left-heading">A UI-First Hackathon</h2>
+            <h2 class="right-heading">By Outlier</h2>
+        </div>
+        <p class="intro-text">
+            Welcome to Sidereal28, an epic design-focused hackathon. Explore the schedule and projects by clicking the calendar days.
+        </p>
+    </header>
+
+    <div class="calendar-container">
+        <div id="calendar" class="calendar"></div>
+        <p class="info-text">Click the project to view</p>
+    </div>
+
+    <footer>
+        <p class="credits">Crafted by Outlier // Design by Sree Charan</p>
+    </footer>
+
+    <script>
+        // Array of project URLs for each day (1-28)
+const projectURLs = {
+    1: "https://pranavipeb.com/",
+    2: "https://example.com/project2",
+    3: "https://example.com/project3",
+    4: "https://example.com/project4",
+    5: "https://example.com/project5",
+    6: "https://example.com/project6",
+    7: "https://example.com/project7",
+    8: "https://example.com/project8",
+    9: "https://example.com/project9",
+    10: "https://example.com/project10",
+    11: "https://example.com/project11",
+    12: "https://example.com/project12",
+    13: "https://example.com/project13",
+    14: "https://example.com/project14",
+    15: "https://example.com/project15",
+    16: "https://example.com/project16",
+    17: "https://example.com/project17",
+    18: "https://example.com/project18",
+    19: "https://example.com/project19",
+    20: "https://example.com/project20",
+    21: "https://example.com/project21",
+    22: "https://example.com/project22",
+    23: "https://example.com/project23",
+    24: "https://example.com/project24",
+    25: "https://example.com/project25",
+    26: "https://example.com/project26",
+    27: "https://example.com/project27",
+    28: "https://example.com/project28"
+};
+
+// Function to create the calendar days dynamically
+function createCalendar() {
+    const calendarContainer = document.getElementById("calendar");
+    
+    // Loop to create each day of the month (1-28)
+    for (let day = 1; day <= 28; day++) {
+        const dayElement = document.createElement("div");
+        dayElement.classList.add("calendar-day");
+        dayElement.textContent = day;
+
+        // Set the data-url attribute to hold the project URL
+        if (projectURLs[day]) {
+            dayElement.setAttribute("data-url", projectURLs[day]);
+        }
+
+        // Remove hover event for tooltip (no tooltip anymore)
+        
+        // Redirect user to project URL on click
+        dayElement.addEventListener("click", function () {
+            const url = dayElement.getAttribute("data-url");
+            if (url) {
+                window.open(url, "_blank");
+            }
+        });
+
+        // Append each day to the calendar container
+        calendarContainer.appendChild(dayElement);
+    }
+}
+
+// Initialize the calendar on page load
+window.onload = function () {
+    createCalendar();
+};
+
+    </script>
+</body>
+</html>
