@@ -2,157 +2,172 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sidereal28 – A UI Hackathon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidereal28 - Project Showcase</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f6f4ef;
       margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    header {
-      text-align: center;
-      padding: 40px 20px 10px;
+      font-family: 'Lora', serif;
+      background-color: #161C1D;
+      color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
     }
 
     h1 {
+      font-family: 'Cinzel', serif;
       font-size: 3rem;
+      animation: fadeInTitle 2s ease;
       margin-bottom: 10px;
-      font-family: 'Georgia', serif;
     }
 
-    .side-headings {
+    .subheadings {
+      width: 100%;
+      max-width: 960px;
       display: flex;
       justify-content: space-between;
-      padding: 0 40px;
+      font-family: 'Merriweather', serif;
       font-size: 1.1rem;
+      margin-bottom: 20px;
     }
 
-    .intro {
-      text-align: center;
-      padding: 20px;
+    p.description {
+      max-width: 960px;
       font-size: 1rem;
-      color: #555;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 40px;
     }
 
     .calendar {
-      max-width: 900px;
-      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 12px;
-      padding: 20px;
+      gap: 15px;
+      max-width: 960px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .calendar a {
+      text-decoration: none;
+      color: inherit;
     }
 
     .day {
-      background: #fffaf1;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 30px 10px;
+      background-color: #1F2A2B;
+      border-radius: 10px;
+      padding: 30px 0;
       text-align: center;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      font-size: 1.2rem;
+      border: 1px solid transparent;
+      transition: transform 0.3s ease, border-color 0.3s ease;
       position: relative;
     }
 
     .day:hover {
-      background: #f4d35e;
-      color: #000;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transform: translateY(-5px);
+      border-color: #D49A0A;
     }
 
-    .day .project {
-      display: none;
+    .project {
+      font-size: 0.8rem;
+      color: #D0AF5D;
+      margin-top: 5px;
+    }
+
+    .calendar-info {
+      margin-top: 10px;
       font-size: 0.9rem;
-      font-weight: normal;
-      margin-top: 8px;
-    }
-
-    .day:hover .project {
-      display: block;
-    }
-
-    .info-text {
-      text-align: center;
-      font-size: 1rem;
-      margin-bottom: 40px;
-      color: #777;
+      color: #ccc;
     }
 
     footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #aaa;
-      padding: 20px;
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: #999;
     }
 
-    @media (max-width: 768px) {
+    @keyframes fadeInTitle {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
       .calendar {
         grid-template-columns: repeat(4, 1fr);
       }
 
-      .side-headings {
+      .subheadings {
         flex-direction: column;
         align-items: center;
-        gap: 4px;
+        gap: 10px;
+        text-align: center;
       }
     }
   </style>
 </head>
 <body>
+  <h1>Sidereal28</h1>
 
-  <header>
-    <h1>Sidereal28</h1>
-    <div class="side-headings">
-      <div>A UI-First Hackathon</div>
-      <div>by Outlier</div>
-    </div>
-  </header>
-
-  <p class="intro">Explore each day of Sidereal28. Hover to preview projects.</p>
-
-  <div class="calendar">
-    <!-- 28 Days Calendar -->
-    <div class="day">1 <div class="project">Project A</div></div>
-    <div class="day">2 <div class="project">Project B</div></div>
-    <div class="day">3 <div class="project">Project C</div></div>
-    <div class="day">4 <div class="project">Project D</div></div>
-    <div class="day">5 <div class="project">Project E</div></div>
-    <div class="day">6 <div class="project">Project F</div></div>
-    <div class="day">7 <div class="project">Project G</div></div>
-    <div class="day">8 <div class="project">Project H</div></div>
-    <div class="day">9 <div class="project">Project I</div></div>
-    <div class="day">10 <div class="project">Project J</div></div>
-    <div class="day">11 <div class="project">Project K</div></div>
-    <div class="day">12 <div class="project">Project L</div></div>
-    <div class="day">13 <div class="project">Project M</div></div>
-    <div class="day">14 <div class="project">Project N</div></div>
-    <div class="day">15 <div class="project">Project O</div></div>
-    <div class="day">16 <div class="project">Project P</div></div>
-    <div class="day">17 <div class="project">Project Q</div></div>
-    <div class="day">18 <div class="project">Project R</div></div>
-    <div class="day">19 <div class="project">Project S</div></div>
-    <div class="day">20 <div class="project">Project T</div></div>
-    <div class="day">21 <div class="project">Project U</div></div>
-    <div class="day">22 <div class="project">Project V</div></div>
-    <div class="day">23 <div class="project">Project W</div></div>
-    <div class="day">24 <div class="project">Project X</div></div>
-    <div class="day">25 <div class="project">Project Y</div></div>
-    <div class="day">26 <div class="project">Project Z</div></div>
-    <div class="day">27 <div class="project">Project AA</div></div>
-    <div class="day">28 <div class="project">Project AB</div></div>
+  <div class="subheadings">
+    <div>A UI-First Hackathon</div>
+    <div>By Outlier</div>
   </div>
 
-  <p class="info-text">Click the project to view</p>
+  <p class="description">
+    Explore 28 days of design-first development. Click any day to view the showcased project.
+  </p>
+
+  <div class="calendar">
+    <a href="https://pranavipeb.com" target="_blank" class="day">1<div class="project">PranaviPEB</div></a>
+    <a href="#" class="day">2<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">3<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">4<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">5<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">6<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">7<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">8<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">9<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">10<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">11<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">12<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">13<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">14<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">15<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">16<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">17<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">18<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">19<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">20<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">21<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">22<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">23<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">24<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">25<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">26<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">27<div class="project">Coming Soon</div></a>
+    <a href="#" class="day">28<div class="project">Coming Soon</div></a>
+  </div>
+
+  <div class="calendar-info">Click any project to view</div>
 
   <footer>
-    Crafted with ✨ by Outlier // Design by Sree Charan
+    <div>Crafted by Outlier</div>
+    <div>Design by Sree Charan</div>
   </footer>
-
 </body>
 </html>
